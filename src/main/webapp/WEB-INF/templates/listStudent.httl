@@ -1,0 +1,25 @@
+#set(String basePath = request.getScheme() + "://" + request.getServerName() + ":" + "a".valueOf(request.serverPort) + request.getContextPath() + "/")
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title></title>
+    <base href="${basePath}"/>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>age</th>
+    </tr>
+    #for(Student student:students)
+        <tr>
+            <td>${student.id}</td>
+            <td>${student.name}</td>
+            <td>${student.age}</td>
+        </tr>
+    #end
+</table>
+</body>
+</html>
