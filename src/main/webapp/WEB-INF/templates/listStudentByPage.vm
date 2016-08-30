@@ -1,0 +1,43 @@
+#set($basePath = ${link.contextPath})
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <base href="${basePath}"/>
+</head>
+<body>
+<table border="1">
+    #if(${error})
+        ${error}
+    #elseif(${students})
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>age</th>
+        </tr>
+        #foreach($student in $students)
+            <tr>
+                <td>${student.id}</td>
+                <td>${student.name}</td>
+                <td>${student.age}</td>
+            </tr>
+        #end
+    #else
+        no students
+    #end
+    #if($currentPage!=1)
+        #set($i=$math.min($currentPage,1))
+        <a href="listStudentByPage?currentPage=1">首页</a>
+        <a href="listStudentByPage?currentPage=$i">上一页</a>
+    #end
+    ${currentPage}/${totalPage}页
+    #if(${currentPage}!=${totalPage})
+        #set($j=$math.sub($currentPage,1))
+        <a href="listStudentByPage?currentPage=$j">下一页</a>
+        <a href="listStudentByPage?currentPage=${totalPage}">尾页</a>
+    #end
+</table>
+powered by velocity!
+</body>
+</html>

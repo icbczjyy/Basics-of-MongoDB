@@ -1,0 +1,39 @@
+#set(String basePath = request.getScheme() + "://" + request.getServerName() + ":" + "a".valueOf(request.serverPort) + request.getContextPath() + "/")
+<html>
+<head>
+    <title></title>
+    <base href="${basePath}"/>
+</head>
+<body>
+<table border="1">
+    #if(error)
+        ${error}
+    #else(students)
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>age</th>
+        </tr>
+        #for(Student student:students)
+            <tr>
+                <td>${student.id}</td>
+                <td>${student.name}</td>
+                <td>${student.age}</td>
+            </tr>
+        #end
+    #else
+        no students
+    #end
+    #if(currentPage!=1)
+        <a href="listStudentByPage?currentPage=1">首页</a>
+        <a href="listStudentByPage?currentPage=${currentPage-1}">上一页</a>
+    #end
+        ${currentPage}/${totalPage}页
+    #if(currentPage!=totalPage)
+        <a href="listStudentByPage?currentPage=${currentPage+1}">下一页</a>
+        <a href="listStudentByPage?currentPage=${totalPage}">尾页</a>
+    #end
+</table>
+powered by httl!
+</body>
+</html>
